@@ -44,16 +44,40 @@ output "eks_output" {
 ####################################
 # create aws eks node group 
 ####################################
+locals {
+  eks_cluster_name = module.eks.output_eks.name
+}
 module "eks_node_group" {
   source       = "./modules/eks_node_group"
-  cluster_name = var.eks_cluster_name
+  cluster_name = local.eks_cluster_name 
   name         = var.eks_node_group_name
   subnet_ids   = data.aws_subnet_ids.subnet_ids.ids
   iam_role     = var.eks_node_group_iam_role 
-
 }
 
 output "eks_node_group_output" {
   value = module.eks_node_group.output_eks_node_group
 }
 
+####################################
+# create aws eks cluster oidc provider
+####################################
+module "iam_openid_connect_provider" {
+  source              = "./modules/iam_openid_connect_provider"
+  cluster_issuer      = module.eks.output_eks.identity.0.oidc.0.issuer
+}
+
+output "iam_openid_connect_provider_output" {
+  value = module.iam_openid_connect_provider.output_iam_openid_connect_provider
+}
+
+
+
+####################################
+# deploy alb-ingress-controller 
+####################################
+
+module "alb_ingress_controller" {
+  source            = "./modules/alb_ingress_controller"
+  eks_cluster_name  = local.eks_cluster_name 
+}
