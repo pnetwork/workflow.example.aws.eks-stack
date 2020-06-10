@@ -1,0 +1,4 @@
+# Created by trek CLI
+
+terraform_command: "apply"
+message: "Hello Terraform from event."

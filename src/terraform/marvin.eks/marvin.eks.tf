@@ -70,14 +70,3 @@ module "iam_openid_connect_provider" {
 output "iam_openid_connect_provider_output" {
   value = module.iam_openid_connect_provider.output_iam_openid_connect_provider
 }
-
-
-
-####################################
-# deploy alb-ingress-controller 
-####################################
-
-module "alb_ingress_controller" {
-  source            = "./modules/alb_ingress_controller"
-  eks_cluster_name  = local.eks_cluster_name 
-}

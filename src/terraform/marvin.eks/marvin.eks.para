@@ -1,0 +1,98 @@
+---
+schemaVersion: '0.2'
+id: marvin.eks 
+version: '0.1.0'
+title: marvin.eks
+name: marvin.eks 
+namespace: network.pentium
+assets:
+  - SCRIPT
+description: ''
+
+inputs:
+  terraform_command:
+    name: Terraform command
+    title: Terraform command
+    description: "apply or destroy"
+    type: string
+    enum:
+      - "apply"
+      - "destroy"
+    enumNames:
+      - "apply"
+      - "destroy"
+  
+  region:
+    name: AWS region
+    title: AWS region
+    description: "AWS region"
+    type: string
+  
+  access_key:  
+    name: AWS access key 
+    title: AWS access key 
+    description: "AWS access key"
+    type: string
+ 
+  secret_key:  
+    name: AWS secret key 
+    title: AWS secret key 
+    description: "AWS secret key"
+    type: string
+
+  vpc_id:  
+    name: AWS VPC ID 
+    title: AWS VPC ID 
+    description: "AWS VPC ID"
+    type: string
+  
+  eks_cluster_name:  
+    name: AWS EKS cluster name 
+    title: AWS EKS cluster name 
+    description: "AWS EKS cluster name to create"
+    type: string
+    default: "example_eks"
+
+  eks_iam_role:
+    name: AWS EKS IAM role name
+    title: AWS EKS IAM role name
+    description: "AWS EKS IAM role name to create"
+    type: string
+    default: "eks_iam_role"
+
+  eks_node_group_iam_role:
+    name: AWS EKS Node Group IAM role name
+    title: AWS EKS Node Group IAM role name
+    description: "AWS EKS Node Group IAM role name to create"
+    type: string
+    default: "eks_node_group_iam_role"
+
+  eks_node_group_name:
+    name: AWS EKS Node Group name
+    title: AWS EKS Node Group name
+    description: "AWS EKS Node Group name to create"
+    type: string
+    default: "example_eks_node_group"
+
+
+required:
+  - terraform_command
+  - region
+  - access_key
+  - secret_key
+  - vpc_id
+
+outputs:
+  stdout:
+    description: Standard output
+    type: string
+    examples: |
+      ---
+      aws_instance.ins[0]: Creating...
+      aws_instance.ins[0]: Still creating... [10s elapsed]
+      aws_instance.ins[0]: Still creating... [20s elapsed]
+      aws_instance.ins[0]: Creation complete after 23s [id=i-0cdd466a32cbae878]
+      Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+      Outputs:
+      instance_id = [
+      ...

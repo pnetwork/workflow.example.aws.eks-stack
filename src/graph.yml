@@ -1,0 +1,22 @@
+$schema: 'http://json-schema.pentium.network/marvin-workflows/0.1/schema'
+graph:
+  metadata:
+    version: 0.0.0
+    title: workflow.eks.trek
+    templateId: workflow.eks.trek
+    description: "my workflow"
+    tags: []
+    author: trek
+  nodes:
+    - metadata:
+        sources: []
+        type: trigger
+        title: trigger
+        description: ''
+      id: '0'
+    - metadata:
+        type: terminator
+        title: terminator
+        description: ''
+      id: '1'
+  edges: []
