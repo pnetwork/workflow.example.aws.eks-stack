@@ -72,14 +72,32 @@ inputs:
             default: "mysql" 
           db_name: 
             type: string
-            default: "test-db-name"
+            default: "testdb57"
           version:
             type: string
             default: "5.7"
           username: 
             type: string
           password:
-            type: string  
+            type: string
+          is_public_access:
+            type: bool
+            default: true
+          is_skip_final_snapshot:
+            type: bool
+            default: true
+          parameter_group_name:
+            type: string
+            default: default.mysql5.7 
+          port:
+            type: number
+            default: 3306
+          storage_size:
+            type: number
+            default: 20
+          storage_type:
+            type: string
+            default: gp2 
 
 required:
   - terraform_command

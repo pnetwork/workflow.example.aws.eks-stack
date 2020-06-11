@@ -8,15 +8,187 @@ graph:
     tags: []
     author: trek
   nodes:
-    - metadata:
-        sources: []
-        type: trigger
-        title: trigger
-        description: ''
-      id: '0'
-    - metadata:
-        type: terminator
-        title: terminator
-        description: ''
-      id: '1'
-  edges: []
+  - metadata:
+      sources: []
+      type: trigger
+      title: trigger
+      description: ''
+      marvinProperties:
+        position:
+          xAxis: 600 
+          yAxis: 100 
+    id: '0'
+  - metadata:
+      type: terminator
+      title: terminator
+      description: ''
+      marvinProperties:
+        position:
+          xAxis: 600 
+          yAxis: 600 
+    id: '1'
+  - metadata:
+      type: action
+      title: create eks
+      description: 'create aws eks stack and alb-ingress-controller'
+      script:
+        id: marvin.eks
+      marvinProperties:
+        position:
+          xAxis: 600
+          yAxis: 300
+    id: '2'
+  - metadata:
+      type: action
+      title: create infra
+      description: 'create components'
+      script:
+        id: marvin.infra
+      marvinProperties:
+        position:
+          xAxis: 600
+          yAxis: 400
+    id: '3' 
+  - metadata:
+      type: action
+      title: destroy infra
+      description: 'destroy infra in AWS'
+      script:
+        id: marvin.infra
+      marvinProperties:
+        position:
+          xAxis: 600
+          yAxis: 500 
+    id: '4'      
+  - metadata:
+      type: action
+      title: destroy eks 
+      description: 'destroy eks in AWS'
+      script:
+        id: marvin.eks
+      marvinProperties:
+        position:
+          xAxis: 600
+          yAxis: 500 
+    id: '5'
+  edges:
+  - source: '0'
+    target: '2'
+    metadata:
+      binding:
+      - property: terraform_command
+        value: 'apply'
+        type: string
+      - property: region
+        value: '{{0.region}}'
+        type: string
+      - property: access_key
+        value: '{{0.access_key}}'
+        type: string
+      - property: secret_key
+        value: '{{0.secret_key}}'
+        type: string
+      - property: vpc_id
+        value: '{{0.vpc_id}}'
+        type: string
+      - property: eks_cluster_name
+        value: '{{0.eks_cluster_name}}'
+        type: string
+      - property: eks_iam_role
+        value: '{{0.eks_iam_role}}'
+        type: string
+      - property: eks_node_group_iam_role
+        value: '{{0.eks_node_group_iam_role}}'
+        type: string
+      - property: eks_node_group_name
+        value: '{{0.eks_node_group_name}}'
+        type: string
+  - source: '2'
+    target: '3'
+    metadata:
+      binding:
+      - property: terraform_command
+        value: 'apply'
+        type: string
+      - property: region
+        value: "{{0.region}}"
+        type: string 
+      - property: access_key
+        value: '{{0.access_key}}'
+        type: string
+      - property: secret_key
+        value: '{{0.secret_key}}'
+        type: string
+      - property: vpc_id
+        value: '{{0.vpc_id}}'
+        type: string
+      - property: eks_cluster_name
+        value: '{{0.eks_cluster_name}}'
+        type: string
+      - property: sg_name_prefix
+        value: '{{0.sg_name_prefix}}' 
+        type: string
+      - property: db
+        value: '{{0.db}}'
+        type: object
+  - source: '3'
+    target: '4'
+    metadata:
+      binding:
+      - property: terraform_command
+        value: 'destroy'
+        type: string
+      - property: region
+        value: "{{0.region}}"
+        type: string 
+      - property: access_key
+        value: '{{0.access_key}}'
+        type: string
+      - property: secret_key
+        value: '{{0.secret_key}}'
+        type: string
+      - property: vpc_id
+        value: '{{0.vpc_id}}'
+        type: string
+      - property: eks_cluster_name
+        value: '{{0.eks_cluster_name}}'
+        type: string
+      - property: sg_name_prefix
+        value: '{{0.sg_name_prefix}}' 
+        type: string
+      - property: db
+        value: '{{0.db}}'
+        type: object
+  - source: '4'
+    target: '5'
+    metadata:
+      binding:
+      - property: terraform_command
+        value: 'destroy'
+        type: string
+      - property: region
+        value: '{{0.region}}'
+        type: string
+      - property: access_key
+        value: '{{0.access_key}}'
+        type: string
+      - property: secret_key
+        value: '{{0.secret_key}}'
+        type: string
+      - property: vpc_id
+        value: '{{0.vpc_id}}'
+        type: string
+      - property: eks_cluster_name
+        value: '{{0.eks_cluster_name}}'
+        type: string
+      - property: eks_iam_role
+        value: '{{0.eks_iam_role}}'
+        type: string
+      - property: eks_node_group_iam_role
+        value: '{{0.eks_node_group_iam_role}}'
+        type: string
+      - property: eks_node_group_name
+        value: '{{0.eks_node_group_name}}'
+        type: string
+  - source: '5'
+    target: '1' 
