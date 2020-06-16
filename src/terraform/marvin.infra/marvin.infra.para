@@ -22,6 +22,12 @@ inputs:
       - "apply"
       - "destroy"
   
+  tfstate:
+    name: Terraform tfstate
+    title: Terraform tfstate
+    description: "terraform execute result"
+    type: object
+
   region:
     name: AWS region
     title: AWS region

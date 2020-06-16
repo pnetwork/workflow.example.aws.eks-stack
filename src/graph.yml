@@ -33,6 +33,7 @@ graph:
       description: 'create aws eks stack and alb-ingress-controller'
       script:
         id: marvin.eks
+        version: 0.1.0
       marvinProperties:
         position:
           xAxis: 600
@@ -44,6 +45,7 @@ graph:
       description: 'create components'
       script:
         id: marvin.infra
+        version: 0.1.0
       marvinProperties:
         position:
           xAxis: 600
@@ -55,6 +57,7 @@ graph:
       description: 'destroy infra in AWS'
       script:
         id: marvin.infra
+        version: 0.1.0
       marvinProperties:
         position:
           xAxis: 600
@@ -66,6 +69,7 @@ graph:
       description: 'destroy eks in AWS'
       script:
         id: marvin.eks
+        version: 0.1.0
       marvinProperties:
         position:
           xAxis: 600
@@ -80,28 +84,28 @@ graph:
         value: 'apply'
         type: string
       - property: region
-        value: '{{0.region}}'
+        value: '{{0.data.region}}'
         type: string
       - property: access_key
-        value: '{{0.access_key}}'
+        value: '{{0.data.access_key}}'
         type: string
       - property: secret_key
-        value: '{{0.secret_key}}'
+        value: '{{0.data.secret_key}}'
         type: string
       - property: vpc_id
-        value: '{{0.vpc_id}}'
+        value: '{{0.data.vpc_id}}'
         type: string
       - property: eks_cluster_name
-        value: '{{0.eks_cluster_name}}'
+        value: '{{0.data.eks_cluster_name}}'
         type: string
       - property: eks_iam_role
-        value: '{{0.eks_iam_role}}'
+        value: '{{0.data.eks_iam_role}}'
         type: string
       - property: eks_node_group_iam_role
-        value: '{{0.eks_node_group_iam_role}}'
+        value: '{{0.data.eks_node_group_iam_role}}'
         type: string
       - property: eks_node_group_name
-        value: '{{0.eks_node_group_name}}'
+        value: '{{0.data.eks_node_group_name}}'
         type: string
   - source: '2'
     target: '3'
@@ -111,25 +115,25 @@ graph:
         value: 'apply'
         type: string
       - property: region
-        value: "{{0.region}}"
+        value: "{{0.data.region}}"
         type: string 
       - property: access_key
-        value: '{{0.access_key}}'
+        value: '{{0.data.access_key}}'
         type: string
       - property: secret_key
-        value: '{{0.secret_key}}'
+        value: '{{0.data.secret_key}}'
         type: string
       - property: vpc_id
-        value: '{{0.vpc_id}}'
+        value: '{{0.data.vpc_id}}'
         type: string
       - property: eks_cluster_name
-        value: '{{0.eks_cluster_name}}'
+        value: '{{0.data.eks_cluster_name}}'
         type: string
       - property: sg_name_prefix
-        value: '{{0.sg_name_prefix}}' 
+        value: '{{0.data.sg_name_prefix}}' 
         type: string
       - property: db
-        value: '{{0.db}}'
+        value: '{{0.data.db}}'
         type: object
   - source: '3'
     target: '4'
@@ -138,26 +142,29 @@ graph:
       - property: terraform_command
         value: 'destroy'
         type: string
+      - property: tfstate
+        value: "{{3.tfstate}}"  
+        type: object
       - property: region
-        value: "{{0.region}}"
+        value: "{{0.data.region}}"
         type: string 
       - property: access_key
-        value: '{{0.access_key}}'
+        value: '{{0.data.access_key}}'
         type: string
       - property: secret_key
-        value: '{{0.secret_key}}'
+        value: '{{0.data.secret_key}}'
         type: string
       - property: vpc_id
-        value: '{{0.vpc_id}}'
+        value: '{{0.data.vpc_id}}'
         type: string
       - property: eks_cluster_name
-        value: '{{0.eks_cluster_name}}'
+        value: '{{0.data.eks_cluster_name}}'
         type: string
       - property: sg_name_prefix
-        value: '{{0.sg_name_prefix}}' 
+        value: '{{0.data.sg_name_prefix}}' 
         type: string
       - property: db
-        value: '{{0.db}}'
+        value: '{{0.data.db}}'
         type: object
   - source: '4'
     target: '5'
@@ -166,29 +173,32 @@ graph:
       - property: terraform_command
         value: 'destroy'
         type: string
+      - property: tfstate
+        value: "{{2.tfstate}}"  
+        type: object
       - property: region
-        value: '{{0.region}}'
+        value: '{{0.data.region}}'
         type: string
       - property: access_key
-        value: '{{0.access_key}}'
+        value: '{{0.data.access_key}}'
         type: string
       - property: secret_key
-        value: '{{0.secret_key}}'
+        value: '{{0.data.secret_key}}'
         type: string
       - property: vpc_id
-        value: '{{0.vpc_id}}'
+        value: '{{0.data.vpc_id}}'
         type: string
       - property: eks_cluster_name
-        value: '{{0.eks_cluster_name}}'
+        value: '{{0.data.eks_cluster_name}}'
         type: string
       - property: eks_iam_role
-        value: '{{0.eks_iam_role}}'
+        value: '{{0.data.eks_iam_role}}'
         type: string
       - property: eks_node_group_iam_role
-        value: '{{0.eks_node_group_iam_role}}'
+        value: '{{0.data.eks_node_group_iam_role}}'
         type: string
       - property: eks_node_group_name
-        value: '{{0.eks_node_group_name}}'
+        value: '{{0.data.eks_node_group_name}}'
         type: string
   - source: '5'
     target: '1' 
