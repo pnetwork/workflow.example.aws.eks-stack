@@ -31,7 +31,7 @@ provider "kubernetes" {
 ####################################
 module "alb_ingress_controller" {
   source  = "iplabs/alb-ingress-controller/kubernetes"
-  version = "3.1.0"
+  version = "3.4.0"
 
   providers = {
     kubernetes = kubernetes.eks

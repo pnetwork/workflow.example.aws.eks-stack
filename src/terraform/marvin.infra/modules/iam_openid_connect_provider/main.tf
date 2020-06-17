@@ -7,7 +7,7 @@ data "aws_region" "current" {}
 # fetch OIDC provider thumbprint for root CA
 ################################### 
 data "external" "thumbprint" {
-  program = ["./modules/iam_openid_connect_provider/oidc-thumbprint.sh", data.aws_region.current.name]
+  program = ["sh", "${path.module}/oidc-thumbprint.sh", data.aws_region.current.name]
 }
 
 ###################################
