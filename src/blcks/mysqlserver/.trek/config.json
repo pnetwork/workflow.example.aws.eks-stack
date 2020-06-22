@@ -1,0 +1,12 @@
+{
+    "marvin_url": "",
+    "marvin_JWT": "",
+    "marvin_secret": "",
+    "input_event_path": "inputs/event.yml",
+    "envs": {
+        "BLCKS_DEBUG_LOG_MODE": "table",
+        "BLCKS_DEBUG_LOG_TABLE_WIDTH": 100,
+        "BLCKS_DEBUG_LOG_FIELDS": "data",
+        "BLCKS_DEBUG_LOG_FORMAT": "{message} => inputParams: {data[inputParamsStr]}"
+    }
+}

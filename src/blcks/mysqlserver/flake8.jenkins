@@ -1,0 +1,45 @@
+pipeline {
+    agent {
+        docker {
+            image 'dockerhub.pentium.network/baseimg/faas-python3-flask:20190424-bce9b9f'
+            args '--user root'
+        }
+    }
+
+    stages {
+        stage("Flake8") {
+            steps {
+                sh '''
+                pip install tox
+                tox -e lint
+                tox -e unit
+                pip install safety
+                safety check --full-report -r ./handler/requirements.txt
+                if [ "$?" != "0" ]; then exit 1; fi
+                '''
+            }
+        }
+    }
+
+    post {
+        always {
+            junit 'flake8.xml'
+            publishHTML (target: [
+                allowMissing: false,
+                alwaysLinkToLastBuild: false,
+                keepAll: true,
+                reportDir: 'htmlcov',
+                reportFiles: 'index.html',
+                reportName: "Coverage Report"
+            ])
+            publishHTML (target: [
+                allowMissing: false,
+                alwaysLinkToLastBuild: false,
+                keepAll: true,
+                reportDir: '.tox/test_output',
+                reportFiles: 'report.html',
+                reportName: "Test Report"
+            ])
+        }
+   }
+}

@@ -1,0 +1,3 @@
+-i https://package.pentium.network/repository/pypi-group/simple --trusted-host=package.pentium.network
+sqlalchemy
+pymysql

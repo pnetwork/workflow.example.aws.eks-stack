@@ -1,0 +1,11 @@
+provider:
+  name: faas
+  gateway: http://127.0.0.1:31112
+functions:
+  mysqlserver:
+    lang: python3_blcks_flask
+    handler: mysqlserver/handler
+    image: dockerhub.pentium.network/dev/mysqlserver:0.7.0
+    secrets:
+    - pn-faas-secret
+    - pn-faas-secret-blcks

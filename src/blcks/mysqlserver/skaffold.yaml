@@ -1,0 +1,11 @@
+apiVersion: skaffold/v1beta10
+kind: Config
+build:
+  artifacts:
+  - image: mysqlserver
+    context: build/mysqlserver
+    docker:
+      noCache: true
+deploy:
+  kustomize:
+    path: github.com/pnetwork/pnbase//mysqlserver/?ref=master

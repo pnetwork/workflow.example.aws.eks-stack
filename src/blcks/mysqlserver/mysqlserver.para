@@ -1,0 +1,40 @@
+---
+id: mysqlserver
+schemaVersion: '0.2'
+name: mysqlserver
+title: mysqlserver
+version: "0.1.0"
+description: ""
+namespace: network.pentium
+assets:
+  - SCRIPT
+
+inputs:
+  url:
+    name: endpoint of db 
+    title: endpoint of db 
+    type: string
+  username:
+    name: db login username 
+    title: db login username
+    type: string
+  password:
+    name: db login password 
+    title: db login password 
+    type: string
+outputs:
+  code:
+    name: result message code
+    title: result message code
+    type: integer
+    description: ""
+  status:
+    name: result message
+    title: result message
+    type: string
+    description: ""
+  result:
+    name: result
+    title: result
+    type: array 
+    description: ""

@@ -1,0 +1,9 @@
+-r handler/requirements.txt
+-i https://package.pentium.network/repository/pypi-group/simple --trusted-host=package.pentium.network
+blcks
+pytest
+pytest_cov 
+mock 
+pytest 
+pytest-html
+pytest-mock
