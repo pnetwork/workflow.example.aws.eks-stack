@@ -73,8 +73,20 @@ graph:
       marvinProperties:
         position:
           xAxis: 600
-          yAxis: 500 
+          yAxis: 600 
     id: '5'
+  - metadata:
+      type: action
+      title: mysqlserver 
+      description: 'test aws rds(mysql)'
+      script:
+        id: mysqlserver 
+        version: 0.7.0
+      marvinProperties:
+        position:
+          xAxis: 600
+          yAxis: 700 
+    id: '6'
   edges:
   - source: '0'
     target: '2'
@@ -136,6 +148,19 @@ graph:
         value: '{{0.data.db}}'
         type: object
   - source: '3'
+    target: '6'
+    metadata: 
+      binding:
+        - property: url
+          value: "{{3.tfstate.outputs.aws_mysql.value.endpoint}}"
+          type: string
+        - property: username
+          value: "{{3.tfstate.outputs.aws_mysql.value.username}}"
+          type: string
+        - property: password
+          value: "{{3.tfstate.outputs.aws_mysql.value.password}}"
+          type: string  
+  - source: '6'
     target: '4'
     metadata:
       binding:

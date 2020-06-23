@@ -3,7 +3,7 @@ id: mysqlserver
 schemaVersion: '0.2'
 name: mysqlserver
 title: mysqlserver
-version: "0.1.0"
+version: "0.7.0"
 description: ""
 namespace: network.pentium
 assets:
